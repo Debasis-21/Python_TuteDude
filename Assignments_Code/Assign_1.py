@@ -1,17 +1,40 @@
 # Grade Checker
 
-# Take input from the user
-score = int(input("Enter the score: "))
+# Function to get a valid score from the user
 
-# Check grade using if-else statements
+def get_score():
+    while True:
+        try:
+            # Prompt the user to enter a score
+            score = int(input("Enter the score (0-100): "))
+            # Check if the score is within the valid range
+            if 0 <= score <= 100:
+                return score # Return the valid score
+            else:
+                print("Score must be between 0 and 100.")  # Validation failed
+        except ValueError:
+            # Handle non-integer inputs
+            print("Invalid input. Please enter a valid number.")
 
-if score >= 90:
-    print("Grade: A")
-elif score >= 80:
-    print("Grade: B")
-elif score >= 70:
-    print("Grade: C")
-elif score >= 60:
-    print("Grade: D")
-else:
-    print("Grade: F")
+# Function to determine grade based on the score
+def determine_grade(score):
+    if score >= 90:
+        return "A"
+    elif score >= 80:
+        return "B"
+    elif score >= 70:
+        return "C"
+    elif score >= 60:
+        return "D"
+    else:
+        return "F"
+
+# Main function to run the program
+def main():
+    score = get_score()  # Get a valid score from the user 
+    grade = determine_grade(score)  # Determine the grade using the score
+    print(f"Grade: {grade}")  # Print the grade
+
+# Entry point of the program
+if __name__ == "__main__":
+    main()
